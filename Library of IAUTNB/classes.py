@@ -290,6 +290,7 @@ class addBook:
     __bookName =str()
     __authorName = list()
     __bookID = int()
+    __bookCode = int()
     __publisher = str()
     __pubYear = int()
     __donation = bool()
@@ -297,10 +298,11 @@ class addBook:
     __department = str()
     __shelfNum = int()
     # Methods
-    def insert(self, bookName, authorName: list, bookID, publisher, pubYear, donation, category, department, shelfNum):
+    def insert(self, bookName, authorName: list, bookID, bookCode,publisher, pubYear, donation, category, department, shelfNum):
         self.__bookName = bookName
         self.__authorName = authorName
         self.__bookID = bookID
+        self.__bookCode = bookCode
         self.__publisher = publisher
         self.__pubYear = pubYear
         self.__donation = donation
@@ -309,14 +311,14 @@ class addBook:
         self.__shelfNum = shelfNum
 
     def display(self):
-        print ("\033[1m{:<20} {:<20} {:<20} {:<20}\033[0m".format('Book Name','Authors Names','Book ID', 'Publisher'))
-        print ("{:<20} {:<20} {:<20} {:<20}".format(self.__bookName, self.__authorName, self.__bookID, self.__publisher))
+        print ("\033[1m{:<20} {:<20} {:<20} {:<20}\033[0m".format('Book Name','Authors Names','Book ID', 'Book Code'))
+        print ("{:<20} {:<20} {:<20} {:<20}".format(self.__bookName, self.__authorName, self.__bookID, self.__bookCode))
         print()
-        print ("\033[1m{:<20} {:<20} {:<20} {:<20}\033[0m".format('Publish Year','Donation','Category', 'Shelf Number'))
-        print ("{:<20} {:<20} {:<20} {:<20}".format(self.__pubYear, self.__donation, self.__category, self.__shelfNum))
+        print ("\033[1m{:<20} {:<20} {:<20} {:<20}\033[0m".format('Publisher', 'Publish Year','Donation','Category'))
+        print ("{:<20} {:<20} {:<20} {:<20}".format(self.__publisher, self.__pubYear, self.__donation, self.__category))
         print()
-        print ("\033[1m{:<20}\033[0m".format('Department'))
-        print ("{:<20}".format(self.__department))
+        print ("\033[1m{:<20} {:<20}\033[0m".format('Department','Shelf Number'))
+        print ("{:<20} {:<20}".format(self.__department,self.__shelfNum))
         print()
 
     def edit(self, dictEdit):
@@ -328,6 +330,8 @@ class addBook:
                 self.__authorName = value
             if key == 'Book ID':
                 self.__bookID = value
+            if key == 'Book Code':
+                self.__bookCode = value
             if key == 'Publisher':
                 self.__publisher = value
             if key == 'Publish Year':
@@ -348,8 +352,8 @@ class search(addBook):
     __searchID = int()
     __searchDate = int()
     # Methods
-    def insert(self, searchID, searchDate, bookName, authorName, bookID, publisher, pubYear, donation, category, department, shelfNum):
-        addBook.insert(self, bookName, authorName, bookID, publisher, pubYear, donation, category, department, shelfNum)
+    def insert(self, searchID, searchDate, bookName, authorName, bookID, bookCode, publisher, pubYear, donation, category, department, shelfNum):
+        addBook.insert(self, bookName, authorName, bookID, bookCode, publisher, pubYear, donation, category, department, shelfNum)
         self.__searchID = searchID
         self.__searchDate = searchDate
 
