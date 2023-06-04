@@ -1,8 +1,8 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLabel, QLineEdit, QPushButton, QWidget
+from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
-from secondPageGUI import mainWindow
+
 
 
 
@@ -11,7 +11,7 @@ class Login(QDialog):
     mylblfont = QFont('B Nazanin', 13, QFont.Bold)
     warningfont = QFont('B Mitra', 14, QFont.Bold)
     titlefont = QFont('B Mitra', 20, QFont.Bold)
-    # rx = QRegExp("[[0-9]*[a-z0]*[A-Z]*]*")
+    # rx = QRegExp("[[0-9]*[a-z]*[A-Z]*]*")
     # validator = QRegExpValidator(rx)
 
     def __init__(self, parent=None):
@@ -28,6 +28,7 @@ class Login(QDialog):
         logo.resize(80,150)
         logo.setPixmap(pixmap.scaled(logo.size(), Qt.IgnoreAspectRatio))
 
+
         lbltitle = QLabel(self)
         lbltitle.move(280,50)
         lbltitle.setFont(self.titlefont)
@@ -35,12 +36,14 @@ class Login(QDialog):
         lbltitle.setAlignment(Qt.AlignCenter)
         lbltitle.adjustSize()
 
+
         lbluser = QLabel(self)
         lbluser.move(520,250)
         lbluser.setFont(self.mylblfont)
         lbluser.setText('نام کاربری:')
         lbluser.setAlignment(Qt.AlignLeft)
         lbluser.adjustSize()
+
 
         lblpass = QLabel(self)
         lblpass.move(520,280)
@@ -56,12 +59,14 @@ class Login(QDialog):
         self.qleuser.setFrame(False)
         # self.qleuser.setValidator(validator)
 
+
         self.qlepass = QLineEdit(self)
         self.qlepass.move(370,285)
         self.qlepass.setText('')
         self.qlepass.setFrame(False)
         self.qlepass.setEchoMode(QLineEdit.Password)
         # self.qlepass.setValidator(validator)
+
 
         self.qleWarning = QLabel('Red', self)
         self.qleWarning.move(370,400)
@@ -103,21 +108,14 @@ class Login(QDialog):
 
 
 
-class FirstWindow(QMainWindow):
-    def __init__(self, parent=None):
-        super(FirstWindow, self).__init__(parent)
-
-
-
-
-
 if __name__ == '__main__':
 
     import sys
     app = QApplication(sys.argv)
     login = Login()
 
+    from secondPageGUI import MainWindow
     if login.exec_() == QDialog.Accepted:
-        window = FirstWindow()
+        window = MainWindow()
         window.show()
         sys.exit(app.exec_())
