@@ -100,11 +100,12 @@ class Login(QDialog):
 
 
     def handleLogin(self):
-        if (self.qleuser.text() == 'admin' and
-            self.qlepass.text() == 'admin'):
+        if (self.qleuser.text() == '' and
+            self.qlepass.text() == ''):
             self.accept()
         else:
             self.qleWarning.show()
+
 
 
 
@@ -114,7 +115,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     login = Login()
 
-    from secondPageGUI import MainWindow
+    from secondPageGUI import *
     if login.exec_() == QDialog.Accepted:
         window = MainWindow()
         window.show()

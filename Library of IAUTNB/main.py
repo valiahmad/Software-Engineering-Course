@@ -8,4 +8,5 @@
 #
 """
 
-import vali_GUI.Login
+from vali_GUI.Login import *
+from vali_GUI.secondPageGUI import *
