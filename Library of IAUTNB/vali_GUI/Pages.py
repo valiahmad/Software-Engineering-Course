@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-
+from numpy.random import randint
+from mytime import Time
 
 
 class addMember(QDialog):
@@ -23,179 +24,38 @@ class addMember(QDialog):
 
 
         # Layout Vertical
-        self.layV1 = QVBoxLayout()
-        self.layV2 = QVBoxLayout()
-        self.layV3 = QVBoxLayout()
-        self.layV4 = QVBoxLayout()
+       
+        self.L = ['نام:', 'نام خانوادگی:', 'نام پدر:', 'کد ملی:', 'تاریخ تولد:', 'شماره تلفن:',
+                  'شماره دانشجویی:', 'رشته تحصیلی:', 'مقطع تحصیلی:', 'دانشکده:', 'آدرس:', 'کد پستی:']
+        self.Labels = []
+        self.LayLabels = []
 
-        self.lblname = QLabel()
-        self.lblname.setFont(self.mylblfont)
-        self.lblname.setText('نام:')
-        self.lblname.setAlignment(Qt.AlignLeft)
-        self.lblname.adjustSize()
-        
-        self.layV1.addWidget(self.lblname)
-
-        self.lblLname = QLabel()
-        self.lblLname.setFont(self.mylblfont)
-        self.lblLname.setText('نام خانوادگی:')
-        self.lblLname.setAlignment(Qt.AlignLeft)
-        self.lblLname.adjustSize()
-
-        self.layV1.addWidget(self.lblLname)
-
-        self.lblFname = QLabel()
-        self.lblFname.setFont(self.mylblfont)
-        self.lblFname.setText('نام پدر:')
-        self.lblFname.setAlignment(Qt.AlignLeft)
-        self.lblFname.adjustSize()
-
-        self.layV1.addWidget(self.lblFname)
-
-        self.lblNCode = QLabel()
-        self.lblNCode.setFont(self.mylblfont)
-        self.lblNCode.setText('کد ملی:')
-        self.lblNCode.setAlignment(Qt.AlignLeft)
-        self.lblNCode.adjustSize()
-
-        self.layV1.addWidget(self.lblNCode)
-
-        self.lblBirth = QLabel()
-        self.lblBirth.setFont(self.mylblfont)
-        self.lblBirth.setText('تاریخ تولد:')
-        self.lblBirth.setAlignment(Qt.AlignLeft)
-        self.lblBirth.adjustSize()
-
-        self.layV1.addWidget(self.lblBirth)
-
-        self.lblPhone = QLabel()
-        self.lblPhone.setFont(self.mylblfont)
-        self.lblPhone.setText('شماره تلفن:')
-        self.lblPhone.setAlignment(Qt.AlignLeft)
-        self.lblPhone.adjustSize()
-
-        self.layV1.addWidget(self.lblPhone)
-
-        self.lblStdCode = QLabel()
-        self.lblStdCode.setFont(self.mylblfont)
-        self.lblStdCode.setText('شماره دانشجویی:')
-        self.lblStdCode.setAlignment(Qt.AlignLeft)
-        self.lblStdCode.adjustSize()
-
-        self.layV3.addWidget(self.lblStdCode)
-
-        self.lblMajor = QLabel()
-        self.lblMajor.setFont(self.mylblfont)
-        self.lblMajor.setText('رشته تحصیلی:')
-        self.lblMajor.setAlignment(Qt.AlignLeft)
-        self.lblMajor.adjustSize()
-
-        self.layV3.addWidget(self.lblMajor)
-
-        self.lblGlvl = QLabel()
-        self.lblGlvl.setFont(self.mylblfont)
-        self.lblGlvl.setText('مقطع تحصیلی:')
-        self.lblGlvl.setAlignment(Qt.AlignLeft)
-        self.lblGlvl.adjustSize()
-
-        self.layV3.addWidget(self.lblGlvl)
-
-        self.lblDep = QLabel()
-        self.lblDep.setFont(self.mylblfont)
-        self.lblDep.setText('دانشکده:')
-        self.lblDep.setAlignment(Qt.AlignLeft)
-        self.lblDep.adjustSize()
-
-        self.layV3.addWidget(self.lblDep)
-
-        self.lblAdd = QLabel()
-        self.lblAdd.setFont(self.mylblfont)
-        self.lblAdd.setText('آدرس:')
-        self.lblAdd.setAlignment(Qt.AlignLeft)
-        self.lblAdd.adjustSize()
-
-        self.layV3.addWidget(self.lblAdd)
-
-        self.lblPCode = QLabel()
-        self.lblPCode.setFont(self.mylblfont)
-        self.lblPCode.setText('کد پستی:')
-        self.lblPCode.setAlignment(Qt.AlignLeft)
-        self.lblPCode.adjustSize()
-
-        self.layV3.addWidget(self.lblPCode)
+        for i in range(2):
+            self.lay = QVBoxLayout()
+            self.LayLabels.append(self.lay)
+            for j in range(6):
+                self.lbl = QLabel()
+                self.lbl.setFont(self.mylblfont)
+                self.lbl.setText(self.L[j + (i * 6)])
+                self.lbl.setAlignment(Qt.AlignLeft)
+                self.lbl.adjustSize()
+                self.Labels.append(self.lbl)
+                self.LayLabels[i].addWidget(self.Labels[j + (i * 6)])
+            
 
         ######################################
-        self.qlename = QLineEdit()
-        self.qlename.setFrame(False)
-        # self.qlename.setValidator(validator)
+        self.LineEdits = []
+        self.LayLineEdits = []
+        for i in range(2):
+            self.lay = QVBoxLayout()
+            self.LayLineEdits.append(self.lay)
+            for j in range(6):
+                self.qle = QLineEdit()
+                self.qle.setFrame(False)
+                # self.qle.setValidator(validator)
+                self.LineEdits.append(self.qle)
+                self.LayLineEdits[i].addWidget(self.LineEdits[j + (i * 6)])
 
-        self.layV2.addWidget(self.qlename)
-
-        self.qleLname = QLineEdit()
-        self.qleLname.setFrame(False)
-        # self.qleLname.setValidator(validator)
-
-        self.layV2.addWidget(self.qleLname)
-
-        self.qleFname = QLineEdit()
-        self.qleFname.setFrame(False)
-        # self.qleFname.setValidator(validator)
-
-        self.layV2.addWidget(self.qleFname)
-
-        self.qleNCode = QLineEdit()
-        self.qleNCode.setFrame(False)
-        # self.qleNCode.setValidator(validator)
-
-        self.layV2.addWidget(self.qleNCode)
-
-        self.qleBirth = QLineEdit()
-        self.qleBirth.setFrame(False)
-        # self.qleBirth.setValidator(validator)
-
-        self.layV2.addWidget(self.qleBirth)
-
-        self.qlePhone = QLineEdit()
-        self.qlePhone.setFrame(False)
-        # self.qlePhone.setValidator(validator)
-
-        self.layV2.addWidget(self.qlePhone)
-
-        self.qleStdCode = QLineEdit()
-        self.qleStdCode.setFrame(False)
-        # self.qleStdCode.setValidator(validator)
-
-        self.layV4.addWidget(self.qleStdCode)
-
-        self.qleMajor = QLineEdit()
-        self.qleMajor.setFrame(False)
-        # self.Major.setValidator(validator)
-
-        self.layV4.addWidget(self.qleMajor)
-
-        self.qleGlvl = QLineEdit()
-        self.qleGlvl.setFrame(False)
-        # self.Glvl.setValidator(validator)
-
-        self.layV4.addWidget(self.qleGlvl)
-
-        self.qleDep = QLineEdit()
-        self.qleDep.setFrame(False)
-        # self.Dep.setValidator(validator)
-
-        self.layV4.addWidget(self.qleDep)
-
-        self.qleAdd = QLineEdit()
-        self.qleAdd.setFrame(False)
-        # self.Add.setValidator(validator)
-
-        self.layV4.addWidget(self.qleAdd)
-
-        self.qlePCode = QLineEdit()
-        self.qlePCode.setFrame(False)
-        # self.qlePCode.setValidator(validator)
-
-        self.layV4.addWidget(self.qlePCode)
 
 
 
@@ -259,10 +119,10 @@ class addMember(QDialog):
         self.layH1.addWidget(self.lblT)
 
         self.layH2 = QHBoxLayout()
-        self.layH2.addLayout(self.layV1)
-        self.layH2.addLayout(self.layV2)
-        self.layH2.addLayout(self.layV3)
-        self.layH2.addLayout(self.layV4)
+        self.layH2.addLayout(self.LayLabels[0])
+        self.layH2.addLayout(self.LayLineEdits[0])
+        self.layH2.addLayout(self.LayLabels[1])
+        self.layH2.addLayout(self.LayLineEdits[1])
         self.layH2.setDirection(QBoxLayout.RightToLeft)
 
         self.layH3 = QHBoxLayout()
@@ -288,9 +148,158 @@ class addMember(QDialog):
         self.backSignal.emit()
 
     def handlePage(self):
-        print('addMember')
+
+        self.resultWin = QDialog()
+        self.resultWin.setGeometry(200,100,1000,500)
+        self.resultWin.setWindowTitle('دانشگاه آزاد اسلامی واحد تهران شمال')
+        self.resultWin.setWindowIcon(QIcon('./Icon/icon.png'))
 
         
+        self.L.extend(['کد عضویت:','کد ثبت نام:','تاریخ ثبت نام:','تاریخ صدور:','تاریخ انقضاء:', ' '])
+
+        for i in range(9,18):
+            self.L.insert(i, self.LineEdits[i - 9].text())
+
+        for i in range(27, 30):
+            self.L.insert(i, self.LineEdits[i - 18].text())
+
+        
+        self.L.append(str(randint(12345, 99999)))
+        self.L.append(str(randint(12345, 99999)))
+        self.L.append(Time())
+        self.L.append(Time())
+        self.L.append(Time(year=1))
+        self.L.append(' ')
+
+        self.Labels = []
+        self.LayLabels = []
+        
+        for i in range(4):
+            self.lay = QVBoxLayout()
+            self.LayLabels.append(self.lay)
+            for j in range(9):
+                self.lbl = QLabel()
+                self.lbl.setFont(self.mylblfont)
+                self.lbl.setText(self.L[j + (i * 9)])
+                self.lbl.setAlignment(Qt.AlignLeft)
+                self.lbl.adjustSize()
+                self.Labels.append(self.lbl)
+                self.LayLabels[i].addWidget(self.Labels[j + (i * 9)])
+            
+
+
+        self.lblsuc = QLabel('Red', self)
+        self.lblsuc.setFont(self.titlefont)
+        self.lblsuc.setText('عضو جدید با موفقیت ثبت شد.')
+        self.lblsuc.setAlignment(Qt.AlignCenter)
+        self.lblsuc.adjustSize()
+        
+        
+        self.qpbr = QPushButton(self)
+        self.qpbr.setText('اتمام')
+        self.qpbr.setFont(self.mylblfont)
+        # self.qpbr.setGeometry(550, 420, 70, 30)
+        self.qpbr.setStyleSheet('''
+                            QPushButton {
+                                border: 2px solid #8f8f91;
+                                border-radius: 15px;
+                                background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                                                stop: 0 #f6f7fa, stop: 1 #dadbde);
+                                min-width: 80px;
+                            }
+
+                            QPushButton:pressed {
+                                background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                                                stop: 0 #dadbde, stop: 1 #f6f7fa);
+                            }''')
+
+
+
+
+
+        self.layH1 = QHBoxLayout()
+        self.layH1.addWidget(self.lblsuc)
+
+        self.layH2 = QHBoxLayout()
+        self.layH2.addLayout(self.LayLabels[0])
+        self.layH2.addLayout(self.LayLabels[1])
+        self.layH2.addLayout(self.LayLabels[2])
+        self.layH2.addLayout(self.LayLabels[3])
+        self.layH2.setDirection(QBoxLayout.RightToLeft)
+
+        self.layH3 = QHBoxLayout()
+        self.layH3.addWidget(self.qpbr, alignment=Qt.AlignCenter)
+
+        self.mainlay = QVBoxLayout()
+        self.mainlay.addLayout(self.layH1)
+        self.mainlay.addLayout(self.layH2)
+        self.mainlay.addLayout(self.layH3)
+        self.mainlay.setSpacing(15)
+        self.mainlay.setContentsMargins(300,0,200,0)
+
+        self.resultWin.widget = QWidget(self.resultWin)
+        self.resultWin.widget.setLayout(self.mainlay)
+
+        self.qpbr.clicked.connect(self.closeResult)
+
+        self.hide()
+        self.resultWin.show()
+
+        
+    def closeResult(self):
+        self.resultWin.close()
+        self.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
